@@ -1,6 +1,6 @@
 const asyncHandler = require("./async_handler");
 
-const User = require("../models/users");
+const User = require("../domain/entities/user");
 const send = require("../common/send_response");
 
 const checkForDuplicateEntry = asyncHandler(async (req, res, next) => {

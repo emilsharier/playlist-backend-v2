@@ -1,5 +1,5 @@
 const send = require("../common/send_response");
-const User = require("../models/users");
+const User = require("../domain/entities/user");
 const asyncHandler = require("./async_handler");
 
 const verifyEmail = asyncHandler(async (req, res, next) => {
