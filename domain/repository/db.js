@@ -4,7 +4,7 @@ const url = process.env.MONGO_URI;
 const DB = process.env.DATABASE;
 
 mongoose
-  .connect(url, {
+  .connect(url + DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

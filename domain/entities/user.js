@@ -17,6 +17,10 @@ const Users = new mongoose.Schema({
     type: String,
     required: [true, "Invalid email"],
   },
+  password: {
+    type: String,
+    required: [true, "Invalid password"],
+  },
   followers: {
     type: Array,
     default: [],
