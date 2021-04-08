@@ -1,20 +1,20 @@
 const mongoose = require("mongoose");
 const { dbErrorLog, dbSuccessLog } = require("../../common/messages");
 const url = process.env.MONGO_URI;
-const DB = process.env.DATABASE;
 
 mongoose
   .connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: false,
   })
   .catch((err) => {
     dbErrorLog(`Error occured while connecting : ${err}`);
   });
 
 mongoose.connection.on("connected", () => {
-  dbSuccessLog(`Mongoose successfully connected to ${url}`);
+  dbSuccessLog(`Mongoose successfully connected to ${url + DB}`);
 });
 
 mongoose.connection.on("error", (err) => {
