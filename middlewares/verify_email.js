@@ -5,6 +5,7 @@ const asyncHandler = require("./async_handler");
 const Auth = require("../domain/orm/auth");
 
 const verifyEmail = asyncHandler(async (req, res, next) => {
+  console.log("Verifiying email");
   let email = "";
 
   if (req.method === "POST") email = req.body.email;
@@ -12,6 +13,8 @@ const verifyEmail = asyncHandler(async (req, res, next) => {
 
   const user = { email: email };
   let result = await Auth.checkExistenceOfEmail(user);
+
+  console.log(result);
 
   if (result.status) {
     req.user = result.data;

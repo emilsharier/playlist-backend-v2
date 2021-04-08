@@ -9,6 +9,8 @@ const checkExistenceOfEmail = async (user) => {
     const { email } = user;
     const filter = { email: email };
     const result = await User.findOne(filter);
+    // console.log("result : ");
+    // console.log(result);
     if (result) {
       return {
         status: true,

@@ -7,6 +7,7 @@ const signIn = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
   const user = { email: email, password: password };
   const result = await AuthService.signIn(user);
+  // console.log(result);
   if (result.status) {
     send(res, 201, result.data);
   } else {

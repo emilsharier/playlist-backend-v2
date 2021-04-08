@@ -10,7 +10,8 @@ const signIn = async (user) => {
   try {
     const { password } = user;
     const result = await Auth.checkExistenceOfEmail(user);
-    if (result.status) {
+    // console.log("ID : " + result.data.userId);
+    if (result.status === true) {
       let passwordStatus = bcrypt.compareSync(password, result.data.password);
       if (!passwordStatus) {
         return { status: false, data: {} };
@@ -24,8 +25,16 @@ const signIn = async (user) => {
             expiresIn: "90d",
           }
         );
-        return { status: false, data: token };
+        return {
+          status: true,
+          data: {
+            token: token,
+            userId: result.data.userId,
+          },
+        };
       }
+    } else {
+      return { status: false, data: "" };
     }
   } catch (ex) {
     errorLog(ex);
