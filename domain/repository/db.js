@@ -14,7 +14,7 @@ mongoose
   });
 
 mongoose.connection.on("connected", () => {
-  dbSuccessLog(`Mongoose successfully connected to ${url + DB}`);
+  dbSuccessLog(`Mongoose successfully connected to ${url}`);
 });
 
 mongoose.connection.on("error", (err) => {
