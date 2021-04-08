@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 const { dbErrorLog, dbSuccessLog } = require("../../common/messages");
 const url = process.env.MONGO_URI;
-const DB = process.env.DATABASE;
 
 mongoose
-  .connect(url + DB, {
+  .connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
