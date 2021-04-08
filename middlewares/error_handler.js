@@ -1,4 +1,4 @@
-const { errorLog } = require("../common/message_log");
+const { errorLog } = require("../common/messages");
 
 module.exports = (err, res) => {
   const { statusCode = 500, message = "Error" } = err;

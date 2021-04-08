@@ -1,18 +1,23 @@
 const send = require("../common/send_response");
-const User = require("../models/users");
+const User = require("../domain/entities/user");
 const asyncHandler = require("./async_handler");
 
+const Auth = require("../domain/orm/auth");
+
 const verifyEmail = asyncHandler(async (req, res, next) => {
+  console.log("Verifiying email");
   let email = "";
 
   if (req.method === "POST") email = req.body.email;
   else email = req.params.email;
 
-  const filter = { email: email };
-  let result = User.findOne(filter);
+  const user = { email: email };
+  let result = await Auth.checkExistenceOfEmail(user);
 
-  if (result) {
-    req.user = result;
+  console.log(result);
+
+  if (result.status) {
+    req.user = result.data;
     next();
   } else {
     send(res, 403, {

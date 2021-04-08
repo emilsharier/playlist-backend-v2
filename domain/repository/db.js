@@ -4,17 +4,18 @@ const url = process.env.MONGO_URI;
 const DB = process.env.DATABASE;
 
 mongoose
-  .connect(url, {
+  .connect(url + DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: false,
   })
   .catch((err) => {
     dbErrorLog(`Error occured while connecting : ${err}`);
   });
 
 mongoose.connection.on("connected", () => {
-  dbSuccessLog(`Mongoose successfully connected to ${url}`);
+  dbSuccessLog(`Mongoose successfully connected to ${url + DB}`);
 });
 
 mongoose.connection.on("error", (err) => {
